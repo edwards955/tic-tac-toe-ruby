@@ -81,7 +81,7 @@ class Board
 end
 
 class GameController
-  attr_accessor :p1, :p2, :board, :game_over
+  attr_accessor :p1, :p2, :board, :game_over, :current_player
   
   def initialize
     puts 'Enter name for Player 1 (X):'
@@ -92,6 +92,35 @@ class GameController
     @p2 = Player.new(name, 'O')
     @board = Board.new
     @game_over = false
+    @current_player = p1
   end
 
+  def change_player_turn
+    self.current_player = current_player == p1 ? p2 : p1
+  end
+
+  def play_round(player)
+    board.print_board
+    choice = player.take_turn
+    board.update_board(choice, player.mark)
+  end
+
+  def play
+    draw = false
+    until game_over == true
+      play_round(current_player)
+      if board.check_for_winner
+        self.game_over = true
+        puts "#{current_player.name} wins!}"
+      else board.check_for_draw
+        self.game_over = true
+        draw = true
+      end
+      change_player_turn
+    end
+    puts "It's a draw!" if draw == true
+  end
 end
+
+my_game = GameController.new
+my_game.play
