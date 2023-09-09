@@ -1,3 +1,5 @@
+require 'pry-byebug'
+
 class Player
   attr_reader :name, :mark
 
@@ -76,7 +78,7 @@ class Board
   end
 
   def check_for_draw
-    cells.flatten.all? { |mark| mark.is_a? String }
+    cells.flatten.none?(Integer)
   end
 end
 
@@ -112,7 +114,7 @@ class GameController
       if board.check_for_winner
         self.game_over = true
         puts "#{current_player.name} wins!}"
-      else board.check_for_draw
+      elsif board.check_for_draw
         self.game_over = true
         draw = true
       end
