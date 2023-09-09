@@ -16,18 +16,18 @@ end
 class Board
   attr_accessor :cells
 
-  def initialize()
+  def initialize
     @cells = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
   end
 
-  def print_board()
+  def print_board
     puts
     puts "|  #{cells[0][0]}  |  #{cells[0][1]}  |  #{cells[0][2]}  |"
     puts "|  #{cells[1][0]}  |  #{cells[1][1]}  |  #{cells[1][2]}  |"
     puts "|  #{cells[2][0]}  |  #{cells[2][1]}  |  #{cells[2][2]}  |"
     puts
   end
-  
+
   def update_board(cell, mark)
     case cell
     when 1
@@ -53,7 +53,7 @@ class Board
     end
   end
 
-  def check_for_winner()
+  def check_for_winner
     if cells[0][0] == cells[0][1] && cells[0][1] == cells[0][2]
       true
     elsif cells[1][0] == cells[1][1] && cells[1][1] == cells[1][2]
@@ -74,4 +74,24 @@ class Board
       false
     end
   end
+
+  def check_for_draw
+    cells.flatten.all? { |mark| mark.is_a? String }
+  end
+end
+
+class GameController
+  attr_accessor :p1, :p2, :board, :game_over
+  
+  def initialize
+    puts 'Enter name for Player 1 (X):'
+    name = gets.chomp
+    @p1 = Player.new(name, 'X')
+    puts 'Enter name for Player 2 (O):'
+    name = gets.chomp
+    @p2 = Player.new(name, 'O')
+    @board = Board.new
+    @game_over = false
+  end
+
 end
