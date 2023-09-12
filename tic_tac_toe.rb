@@ -10,7 +10,15 @@ class Player
 
   def take_turn()
     puts "#{name}, choose a cell"
-    choice = gets.chomp.to_i
+    need_choice = true
+    while need_choice
+      choice = gets.chomp.to_i
+      if choice.between?(1, 9)
+        need_choice = false
+      else
+        puts 'Invalid cell. Choose again.'
+      end
+    end
     choice
   end
 end
