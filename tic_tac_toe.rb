@@ -41,23 +41,68 @@ class Board
   def update_board(cell, mark)
     case cell
     when 1
-      cells[0][0] = mark
+      if cells[0][0].is_a? Integer
+        cells[0][0] = mark
+        true
+      else
+        false
+      end
     when 2
-      cells[0][1] = mark
+      if cells[0][1].is_a? Integer
+        cells[0][1] = mark
+        true
+      else
+        false
+      end
     when 3
-      cells[0][2] = mark
+      if cells[0][2].is_a? Integer
+        cells[0][2] = mark
+        true
+      else
+        false
+      end
     when 4
-      cells[1][0] = mark
+      if cells[1][0].is_a? Integer
+        cells[1][0] = mark
+        true
+      else
+        false
+      end
     when 5
-      cells[1][1] = mark
+      if cells[1][1].is_a? Integer
+        cells[1][1] = mark
+        true
+      else
+        false
+      end
     when 6
-      cells[1][2] = mark
+      if cells[1][2].is_a? Integer
+        cells[1][2] = mark
+        true
+      else
+        false
+      end
     when 7
-      cells[2][0] = mark
+      if cells[2][0].is_a? Integer
+        cells[2][0] = mark
+        true
+      else
+        false
+      end
     when 8
-      cells[2][1] = mark
+      if cells[2][1].is_a? Integer
+        cells[2][1] = mark
+        true
+      else
+        false
+      end
     when 9
-      cells[2][2] = mark
+      if cells[2][2].is_a? Integer
+        cells[2][2] = mark
+        true
+      else
+        false
+      end
     else
       puts 'Incorrect cell value entered'
     end
