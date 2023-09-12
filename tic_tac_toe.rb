@@ -113,13 +113,15 @@ class GameController
       play_round(current_player)
       if board.check_for_winner
         self.game_over = true
-        puts "#{current_player.name} wins!}"
+        puts
+        puts "#{current_player.name} wins!"
       elsif board.check_for_draw
         self.game_over = true
         draw = true
       end
       change_player_turn
     end
+    board.print_board
     puts "It's a draw!" if draw == true
   end
 end
